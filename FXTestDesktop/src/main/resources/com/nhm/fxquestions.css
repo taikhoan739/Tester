@@ -1,0 +1,10 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+VBox {
+     -fx-background-color: pink;
+}
+Text.Subject {
+    -fx-color:red;
+}

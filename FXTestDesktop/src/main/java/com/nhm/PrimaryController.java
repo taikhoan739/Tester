@@ -69,7 +69,7 @@ public class PrimaryController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         try {
            QuestionService qs = new QuestionService();
-            this.questions= qs.getQuestions(3);
+            this.questions= qs.getQuestions(3,null);
             loadQuestionToUI();
            
         } catch (SQLException ex) {
@@ -94,6 +94,5 @@ public class PrimaryController implements Initializable{
             this.currentIdx++;
         }
         loadQuestionToUI();
-        
     }
 }

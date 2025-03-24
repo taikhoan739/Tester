@@ -6,6 +6,7 @@ package com.nhm.services;
 
 import com.nhm.pojo.Category;
 import com.nhm.pojo.JdbcUtils;
+import com.nhm.pojo.Question;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,19 @@ public class CategoryService {
             }
         }
         return categories;
+    }
+    public List<Question> getQuestionByCateId(int cateId) throws SQLException{
         
+        List<Question> questions  = new ArrayList<>();
+        try(Connection conn = JdbcUtils.getConn()){
+            PreparedStatement stm = conn.prepareCall("SELECT * FROM question WHERE category_id=?");
+            stm.setInt(1, cateId);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Question c = new Question(rs.getString("id"),rs.getString("content"),rs.getInt("category_id"));
+                questions.add(c);
+            }
+        }
+        return questions;
     }
 }
